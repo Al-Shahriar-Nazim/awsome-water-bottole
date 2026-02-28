@@ -1,15 +1,17 @@
+import { Suspense } from 'react';
 import './App.css'
+import Bottols from './Components/Bottols/Bottols';
+
+const bottolsPromised = fetch('bottol.json').then(res=>res.json());
 
 function App() {
-  // const bottol =[
-  //   {id:1,name:"pink nick bottol",prices:250,color:'pink'},
-  //   {id:2,name:"ywllow nick bottol",prices:270,color:'yellow'},
-  //   {id:3,name:"red nick bottol",prices:300,color:'red'},
-  //   {id:4,name:"black nick bottol",prices:600,color:'black'},
-  // ]
+  
   return (
     <>
      <h1>Awsome water bottol</h1>
+     <Suspense fallback={<p>Loading bottols</p>}>
+     <Bottols bottolsPromised={bottolsPromised}></Bottols>
+     </Suspense>
     </>
   )
 }
